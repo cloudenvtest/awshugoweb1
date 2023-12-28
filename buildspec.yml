@@ -2,12 +2,12 @@ version: 0.2
 
 environment_variables:
   plaintext:
-    HUGO_VERSION: "0.74.3"
+    HUGO_VERSION: "0.121.1"
     
 phases:
   install:
     runtime-versions:
-      docker: 18
+      nodejs: 12
     commands:                                                                 
       - cd /tmp
       - wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
@@ -19,7 +19,7 @@ phases:
     commands:
       - rm -rf public
       - hugo
-      - aws s3 sync public/ s3://hugocddemo/ --region us-east-1 --delete
+      - aws s3 sync public/ s3://awshugoweb1/ --region eu-north-1 --delete
   post_build:
     commands:
       - echo Build completed on `date`
